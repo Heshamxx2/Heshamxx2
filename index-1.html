@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HESHAM | مصنوعات جلدية فاخرة</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --cream: #f5f0e8;
+  --warm: #ede6d6;
+  --gold: #b8860b;
+  --gold2: #d4a017;
+  --brown: #3d2b1f;
+  --brown2: #5c3d2e;
+  --dark: #1a120b;
+  --muted: #8a7560;
+  --border: rgba(184,134,11,0.18);
+  --serif: 'Cormorant Garamond', Georgia, serif;
+  --arabic: 'Cairo', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--arabic);
+  background: var(--cream);
+  color: var(--dark);
+  direction: rtl;
+  overflow-x: hidden;
+}
+
+/* texture overlay */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none; z-index: 0;
+}
+
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--warm); }
+::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 4px; }
+
+/* ─── HEADER ─── */
+header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(245,240,232,0.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+.hdr {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 32px; height: 70px;
+}
+.logo {
+  display: flex; flex-direction: column; align-items: center;
+  cursor: pointer; text-decoration: none;
+}
+.logo-en {
+  font-family: var(--serif); font-size: 22px; font-weight: 700;
+  color: var(--brown); letter-spacing: 6px; line-height: 1;
+}
+.logo-sub {
+  font-size: 9px; color: var(--gold); letter-spacing: 3px;
+  font-weight: 600; margin-top: 2px;
+}
+.hdr-nav { display: flex; gap: 28px; }
+.hdr-nav a {
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  text-decoration: none; letter-spacing: 1px;
+  transition: color .2s; cursor: pointer;
+}
+.hdr-nav a:hover { color: var(--brown); }
+.hdr-right { display: flex; align-items: center; gap: 16px; }
+.wa-btn {
+  display: flex; align-items: center; gap: 8px;
+  background: var(--brown); color: var(--cream);
+  border: none; border-radius: 0; padding: 10px 20px;
+  font-size: 12px; font-weight: 700; cursor: pointer;
+  font-family: var(--arabic); letter-spacing: 1px;
+  transition: background .2s;
+}
+.wa-btn:hover { background: var(--brown2); }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative; z-index: 1;
+  background: var(--brown);
+  min-height: 85vh;
+  display: flex; align-items: center; justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: 
+    radial-gradient(ellipse at 30% 50%, rgba(184,134,11,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse at 70% 30%, rgba(92,61,46,0.4) 0%, transparent 50%);
+}
+.hero-pattern {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image: repeating-linear-gradient(45deg, #d4a017 0, #d4a017 1px, transparent 0, transparent 50%);
+  background-size: 20px 20px;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  text-align: center; padding: 60px 32px;
+  max-width: 700px;
+  animation: heroIn 1.2s ease both;
+}
+@keyframes heroIn { from { opacity:0; transform:translateY(30px) } to { opacity:1; transform:translateY(0) } }
+.hero-tag {
+  display: inline-block;
+  font-size: 10px; color: var(--gold2); letter-spacing: 4px; font-weight: 700;
+  border: 1px solid rgba(212,160,23,0.4); padding: 6px 18px;
+  margin-bottom: 28px;
+}
+.hero-title {
+  font-family: var(--serif); font-size: clamp(42px, 8vw, 80px);
+  color: var(--cream); line-height: 1.1; margin-bottom: 8px;
+  font-weight: 700;
+}
+.hero-title em { color: var(--gold2); font-style: italic; }
+.hero-ar {
+  font-family: var(--arabic); font-size: clamp(14px, 2.5vw, 18px);
+  color: rgba(245,240,232,0.6); font-weight: 400; margin-bottom: 32px;
+  letter-spacing: 2px;
+}
+.hero-line {
+  width: 60px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold2), transparent);
+  margin: 0 auto 32px;
+}
+.hero-desc {
+  font-size: 14px; color: rgba(245,240,232,0.7);
+  line-height: 1.9; margin-bottom: 40px; max-width: 500px; margin-left: auto; margin-right: auto;
+}
+.hero-cta {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  color: var(--dark); font-size: 13px; font-weight: 800;
+  padding: 14px 32px; cursor: pointer; border: none;
+  font-family: var(--arabic); letter-spacing: 1px;
+  transition: transform .2s, box-shadow .2s;
+}
+.hero-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(184,134,11,0.4); }
+.scroll-hint {
+  position: absolute; bottom: 32px; left: 50%;
+  transform: translateX(-50%); z-index: 2;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  color: rgba(245,240,232,0.4); font-size: 10px; letter-spacing: 2px;
+  animation: bounce 2s infinite;
+}
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+.scroll-arrow { font-size: 16px; }
+
+/* ─── SECTION ─── */
+.section { position: relative; z-index: 1; }
+.section-inner { max-width: 1200px; margin: 0 auto; padding: 80px 32px; }
+.section-header { text-align: center; margin-bottom: 56px; }
+.section-tag {
+  font-size: 10px; color: var(--gold); letter-spacing: 3px; font-weight: 700;
+  margin-bottom: 14px; display: block;
+}
+.section-title {
+  font-family: var(--serif); font-size: clamp(28px, 4vw, 44px);
+  color: var(--brown); font-weight: 700; line-height: 1.2;
+}
+.section-title em { color: var(--gold); font-style: italic; }
+.section-line {
+  width: 48px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin: 18px auto 0;
+}
+
+/* ─── FILTERS ─── */
+.filters {
+  display: flex; gap: 8px; justify-content: center;
+  flex-wrap: wrap; margin-bottom: 48px;
+}
+.filter-btn {
+  padding: 8px 22px; border: 1px solid var(--border);
+  background: transparent; color: var(--muted);
+  font-size: 11px; font-weight: 700; cursor: pointer;
+  font-family: var(--arabic); letter-spacing: 1px;
+  transition: all .25s;
+}
+.filter-btn:hover, .filter-btn.active {
+  background: var(--brown); color: var(--cream);
+  border-color: var(--brown);
+}
+
+/* ─── PRODUCTS GRID ─── */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2px;
+}
+.prod-card {
+  position: relative; overflow: hidden;
+  background: var(--warm);
+  cursor: pointer;
+  animation: cardIn .5s ease both;
+}
+@keyframes cardIn { from{opacity:0;transform:scale(.98)} to{opacity:1;transform:scale(1)} }
+.prod-card:hover .prod-overlay { opacity: 1; }
+.prod-card:hover .prod-img-wrap img { transform: scale(1.06); }
+.prod-img-wrap {
+  height: 320px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  background: #e8dfc8;
+}
+.prod-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s ease; }
+.prod-emoji-ph {
+  font-size: 80px; opacity: 0.4;
+}
+.prod-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(26,18,11,0.85) 0%, rgba(26,18,11,0.1) 60%, transparent 100%);
+  opacity: 0; transition: opacity .4s;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 24px;
+}
+.prod-overlay-btn {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: var(--gold2); color: var(--dark);
+  border: none; padding: 12px; font-size: 12px; font-weight: 800;
+  cursor: pointer; font-family: var(--arabic); width: 100%;
+  letter-spacing: 1px; transition: background .2s;
+}
+.prod-overlay-btn:hover { background: var(--gold); }
+.prod-body { padding: 20px; border-top: 1px solid var(--border); }
+.prod-cat {
+  font-size: 9px; color: var(--gold); letter-spacing: 2px; font-weight: 700;
+  margin-bottom: 6px;
+}
+.prod-name {
+  font-family: var(--serif); font-size: 18px; font-weight: 700;
+  color: var(--brown); margin-bottom: 4px; line-height: 1.3;
+}
+.prod-desc-short { font-size: 11px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
+.prod-footer { display: flex; align-items: center; justify-content: space-between; }
+.prod-price { font-family: var(--serif); font-size: 20px; font-weight: 700; color: var(--brown); }
+.prod-price span { font-size: 11px; font-family: var(--arabic); color: var(--muted); }
+.prod-colors { display: flex; gap: 5px; }
+.color-dot {
+  width: 16px; height: 16px; border-radius: 50%;
+  border: 2px solid rgba(255,255,255,0.8);
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  cursor: pointer; transition: transform .2s;
+}
+.color-dot:hover { transform: scale(1.3); }
+.color-dot.active-color { border-color: var(--gold); transform: scale(1.2); }
+
+/* mobile tap area */
+.prod-mobile-btn {
+  display: none;
+  width: 100%; background: var(--brown); color: var(--cream);
+  border: none; padding: 12px; font-size: 12px; font-weight: 700;
+  cursor: pointer; font-family: var(--arabic); letter-spacing: 1px;
+  margin-top: 12px;
+}
+
+/* ─── ABOUT ─── */
+.about-section { background: var(--brown); }
+.about-inner {
+  max-width: 1200px; margin: 0 auto;
+  padding: 90px 32px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.about-text .section-tag { color: var(--gold2); }
+.about-title {
+  font-family: var(--serif); font-size: clamp(28px, 3.5vw, 42px);
+  color: var(--cream); font-weight: 700; line-height: 1.3; margin-bottom: 20px;
+}
+.about-title em { color: var(--gold2); font-style: italic; }
+.about-desc { font-size: 14px; color: rgba(245,240,232,0.7); line-height: 2; margin-bottom: 32px; }
+.about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.a-stat {
+  border: 1px solid rgba(212,160,23,0.2); padding: 18px;
+}
+.a-stat-n {
+  font-family: var(--serif); font-size: 32px; color: var(--gold2); font-weight: 700;
+}
+.a-stat-l { font-size: 11px; color: rgba(245,240,232,0.5); letter-spacing: 1px; }
+.about-visual {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.av-box {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(212,160,23,0.1);
+  aspect-ratio: 1; display: flex; align-items: center; justify-content: center;
+  font-size: 48px; opacity: 0.6;
+}
+.av-box:nth-child(2) { margin-top: 24px; }
+.av-box:nth-child(4) { margin-top: -24px; }
+
+/* ─── CONTACT ─── */
+.contact-section { background: var(--warm); }
+.contact-inner {
+  max-width: 600px; margin: 0 auto;
+  padding: 80px 32px; text-align: center;
+}
+.contact-wa {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: #25d366; color: #fff;
+  border: none; padding: 16px 36px;
+  font-size: 15px; font-weight: 800; cursor: pointer;
+  font-family: var(--arabic); letter-spacing: 1px;
+  transition: all .2s; margin-top: 28px;
+}
+.contact-wa:hover { background: #1ebe59; transform: translateY(-2px); }
+.contact-info { margin-top: 32px; display: flex; flex-direction: column; gap: 10px; }
+.ci-item { font-size: 13px; color: var(--muted); }
+.ci-item strong { color: var(--brown); }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--dark);
+  padding: 40px 32px;
+  text-align: center;
+  position: relative; z-index: 1;
+}
+.footer-logo {
+  font-family: var(--serif); font-size: 20px; color: var(--cream);
+  letter-spacing: 6px; margin-bottom: 8px; font-weight: 700;
+}
+.footer-sub { font-size: 10px; color: var(--gold); letter-spacing: 3px; margin-bottom: 20px; }
+.footer-copy { font-size: 11px; color: rgba(245,240,232,0.3); }
+
+/* ─── PRODUCT MODAL ─── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,18,11,0.85); z-index: 600;
+  backdrop-filter: blur(6px);
+  align-items: center; justify-content: center;
+  padding: 20px;
+}
+.modal-overlay.open { display: flex; }
+.modal {
+  background: var(--cream); max-width: 800px; width: 100%;
+  max-height: 90vh; overflow-y: auto;
+  display: grid; grid-template-columns: 1fr 1fr;
+  animation: mIn .35s ease both;
+}
+@keyframes mIn { from{opacity:0;transform:scale(.95)} to{opacity:1;transform:scale(1)} }
+.modal-img {
+  height: 100%; min-height: 400px;
+  display: flex; align-items: center; justify-content: center;
+  background: #e8dfc8; font-size: 100px; overflow: hidden;
+}
+.modal-img img { width: 100%; height: 100%; object-fit: cover; }
+.modal-body { padding: 40px 32px; display: flex; flex-direction: column; justify-content: space-between; }
+.modal-close {
+  position: absolute; top: 16px; left: 16px;
+  background: rgba(26,18,11,0.7); border: none; color: #fff;
+  width: 36px; height: 36px; border-radius: 50%; cursor: pointer; font-size: 16px;
+}
+.modal-cat { font-size: 10px; color: var(--gold); letter-spacing: 3px; font-weight: 700; margin-bottom: 10px; }
+.modal-name { font-family: var(--serif); font-size: 28px; font-weight: 700; color: var(--brown); margin-bottom: 10px; line-height: 1.2; }
+.modal-price { font-family: var(--serif); font-size: 24px; color: var(--brown); font-weight: 700; margin-bottom: 20px; }
+.modal-desc { font-size: 13px; color: var(--muted); line-height: 1.9; margin-bottom: 24px; }
+.modal-section-label { font-size: 10px; color: var(--gold); letter-spacing: 2px; font-weight: 700; margin-bottom: 10px; }
+.modal-colors { display: flex; gap: 10px; margin-bottom: 24px; flex-wrap: wrap; }
+.mcolor-opt {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border: 1px solid var(--border);
+  cursor: pointer; font-size: 12px; font-weight: 600; color: var(--brown);
+  transition: all .2s;
+}
+.mcolor-opt:hover, .mcolor-opt.sel { border-color: var(--brown); background: var(--warm); }
+.mcolor-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; }
+.modal-wa-btn {
+  width: 100%; background: #25d366; color: #fff; border: none;
+  padding: 16px; font-size: 14px; font-weight: 800; cursor: pointer;
+  font-family: var(--arabic); display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: background .2s; letter-spacing: 1px;
+}
+.modal-wa-btn:hover { background: #1ebe59; }
+
+/* ─── TOAST ─── */
+.toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--brown); color: var(--cream);
+  border: 1px solid rgba(212,160,23,0.3);
+  padding: 12px 24px; font-size: 13px; font-weight: 700;
+  z-index: 999; opacity: 0; transition: all .3s; pointer-events: none; white-space: nowrap;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media(max-width: 768px) {
+  .hdr { padding: 0 16px; }
+  .hdr-nav { display: none; }
+  .hero-content { padding: 40px 20px; }
+  .about-inner { grid-template-columns: 1fr; gap: 40px; }
+  .about-visual { display: none; }
+  .modal { grid-template-columns: 1fr; }
+  .modal-img { min-height: 250px; }
+  .products-grid { grid-template-columns: 1fr 1fr; gap: 2px; }
+  .prod-img-wrap { height: 200px; }
+  .prod-overlay { opacity: 1; }
+  .prod-mobile-btn { display: block; }
+  .section-inner { padding: 56px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="toast" id="toast"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="hdr">
+    <div class="logo" onclick="scrollTo(0,0)">
+      <span class="logo-en">HESHAM</span>
+      <span class="logo-sub">مصنوعات جلدية فاخرة</span>
+    </div>
+    <nav class="hdr-nav">
+      <a onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">المنتجات</a>
+      <a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">عن المصنع</a>
+      <a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">تواصل معنا</a>
+    </nav>
+    <div class="hdr-right">
+      <button class="wa-btn" onclick="openWa('مرحباً، أريد الاستفسار عن منتجاتكم')">📲 واتساب</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-tag">✦ HANDCRAFTED LEATHER GOODS ✦</div>
+    <h1 class="hero-title">HESHAM<br/><em>Leather</em></h1>
+    <p class="hero-ar">حِرفة أصيلة — جودة لا تُضاهى</p>
+    <div class="hero-line"></div>
+    <p class="hero-desc">محافظ وميداليات وإكسسوارات جلدية مصنوعة يدوياً بأجود أنواع الجلد الطبيعي. كل قطعة فريدة تحكي قصة حرفة أصيلة.</p>
+    <button class="hero-cta" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+      تصفح المجموعة ↓
+    </button>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-arrow">↓</div>
+    <span>اكتشف</span>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="section" id="products">
+  <div class="section-inner">
+    <div class="section-header">
+      <span class="section-tag">✦ مجموعتنا ✦</span>
+      <h2 class="section-title">مصنوعات <em>مختارة بعناية</em></h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="products-grid" id="prodsGrid"></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about-section" id="about">
+  <div class="about-inner">
+    <div class="about-text">
+      <span class="section-tag">✦ عن المصنع ✦</span>
+      <h2 class="about-title">حرفة تتوارثها<br/><em>الأجيال</em></h2>
+      <p class="about-desc">
+        في مصنع HESHAM نؤمن بأن كل قطعة جلدية هي عمل فني قبل أن تكون منتجاً. نستخدم أجود أنواع الجلد الطبيعي ونصنع كل قطعة يدوياً بدقة وإتقان. تمتد خبرتنا لسنوات من الشغف بالحرفة الجلدية الأصيلة.
+      </p>
+      <div class="about-stats">
+        <div class="a-stat"><div class="a-stat-n">100%</div><div class="a-stat-l">جلد طبيعي</div></div>
+        <div class="a-stat"><div class="a-stat-n">يدوي</div><div class="a-stat-l">صناعة حرفية</div></div>
+        <div class="a-stat"><div class="a-stat-n">+50</div><div class="a-stat-l">تصميم مختلف</div></div>
+        <div class="a-stat"><div class="a-stat-n">مضمون</div><div class="a-stat-l">جودة وإتقان</div></div>
+      </div>
+    </div>
+    <div class="about-visual">
+      <div class="av-box">👜</div>
+      <div class="av-box">🏅</div>
+      <div class="av-box">💼</div>
+      <div class="av-box">🔑</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="contact-inner">
+    <span class="section-tag">✦ تواصل معنا ✦</span>
+    <h2 class="section-title" style="margin-top:10px">طلب خاص أو<br/><em>استفسار؟</em></h2>
+    <div class="section-line"></div>
+    <p style="font-size:14px;color:var(--muted);margin-top:20px;line-height:1.9">
+      نرحب بطلبات التخصيص — اسمك أو حرفك الأولى على محفظتك، أو تصميم حسب الطلب. تواصل معنا مباشرة عبر واتساب.
+    </p>
+    <button class="contact-wa" onclick="openWa('مرحباً، أريد الاستفسار عن طلب خاص')">
+      📲 تحدث معنا على واتساب
+    </button>
+    <div class="contact-info">
+      <div class="ci-item">⏰ ساعات العمل: <strong>9 صباحاً — 9 مساءً</strong></div>
+      <div class="ci-item">📦 شحن لجميع المحافظات</div>
+      <div class="ci-item">✨ تخصيص الأسماء والألوان متاح</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">HESHAM</div>
+  <div class="footer-sub">مصنوعات جلدية فاخرة</div>
+  <div class="footer-copy">© 2026 HESHAM Leather — جميع الحقوق محفوظة</div>
+</footer>
+
+<!-- PRODUCT MODAL -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal" onclick="event.stopPropagation()">
+    <div class="modal-img" id="mImg"></div>
+    <div class="modal-body">
+      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+      <div>
+        <div class="modal-cat" id="mCat"></div>
+        <div class="modal-name" id="mName"></div>
+        <div class="modal-price" id="mPrice"></div>
+        <div class="modal-desc" id="mDesc"></div>
+        <div class="modal-section-label">اختر اللون</div>
+        <div class="modal-colors" id="mColors"></div>
+      </div>
+      <button class="modal-wa-btn" onclick="orderNow()">
+        📲 اطلب الآن عبر واتساب
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ══ رقم الواتساب — غيّره لرقمك ══
+const WA_NUMBER = '967780066128';
+
+// ══ المنتجات — أضف منتجاتك هنا ══
+// لإضافة صورة حقيقية: استبدل null بـ 'رابط-الصورة.jpg'
+const products = [
+  {
+    id: 1,
+    name: 'محفظة الرجال الكلاسيك',
+    nameEn: 'Classic Men Wallet',
+    cat: 'محافظ',
+    price: 12000,
+    currency: 'ريال',
+    emoji: '👜',
+    img: null,
+    desc: 'محفظة رجالية مصنوعة من جلد طبيعي فاخر، تتميز بتصميمها الأنيق وخياطتها اليدوية الدقيقة. تحتوي على 8 خانات للبطاقات ومكانين للأوراق المالية.',
+    colors: [
+      { name: 'بني كلاسيك', hex: '#5c3d2e' },
+      { name: 'أسود فاخر', hex: '#1a1a1a' },
+      { name: 'كاراميل', hex: '#c68642' },
+    ]
+  },
+  {
+    id: 2,
+    name: 'ميدالية منقوشة',
+    nameEn: 'Engraved Keychain',
+    cat: 'ميداليات',
+    price: 3500,
+    currency: 'ريال',
+    emoji: '🏅',
+    img: null,
+    desc: 'ميدالية جلدية منقوشة بأناقة، يمكن تخصيصها بالاسم أو الحرف الأول. هدية مثالية لكل المناسبات.',
+    colors: [
+      { name: 'بني داكن', hex: '#3d2b1f' },
+      { name: 'أسود', hex: '#1a1a1a' },
+      { name: 'طبيعي', hex: '#c68642' },
+    ]
+  },
+  {
+    id: 3,
+    name: 'حقيبة الكتف النسائية',
+    nameEn: 'Women Shoulder Bag',
+    cat: 'حقائب',
+    price: 35000,
+    currency: 'ريال',
+    emoji: '👛',
+    img: null,
+    desc: 'حقيبة كتف نسائية من الجلد الطبيعي عالي الجودة. تصميم عصري يجمع بين الأناقة والعملية. مناسبة للاستخدام اليومي والمناسبات.',
+    colors: [
+      { name: 'بيج ناعم', hex: '#d4b896' },
+      { name: 'بني كوني', hex: '#5c3d2e' },
+      { name: 'أسود', hex: '#1a1a1a' },
+    ]
+  },
+  {
+    id: 4,
+    name: 'حافظة الجواز الفاخرة',
+    nameEn: 'Luxury Passport Holder',
+    cat: 'محافظ',
+    price: 8000,
+    currency: 'ريال',
+    emoji: '📔',
+    img: null,
+    desc: 'حافظة جواز سفر من الجلد الطبيعي تحمي وثائقك بأناقة. تحتوي على خانات للبطاقات وجيب للتذاكر. يمكن نقش اسمك عليها.',
+    colors: [
+      { name: 'بني داكن', hex: '#3d2b1f' },
+      { name: 'نبيذي', hex: '#722f37' },
+      { name: 'أسود فاخر', hex: '#1a1a1a' },
+    ]
+  },
+  {
+    id: 5,
+    name: 'حزام جلدي كلاسيك',
+    nameEn: 'Classic Leather Belt',
+    cat: 'إكسسوارات',
+    price: 9000,
+    currency: 'ريال',
+    emoji: '👔',
+    img: null,
+    desc: 'حزام رجالي من الجلد الطبيعي السميك مع إبزيم معدني فاخر. متوفر بأحجام متعددة. تصميم يدوم للأبد.',
+    colors: [
+      { name: 'بني كلاسيك', hex: '#5c3d2e' },
+      { name: 'أسود', hex: '#1a1a1a' },
+      { name: 'تان', hex: '#c68642' },
+    ]
+  },
+  {
+    id: 6,
+    name: 'مفتاحية جلدية مخصصة',
+    nameEn: 'Custom Leather Keyring',
+    cat: 'ميداليات',
+    price: 2500,
+    currency: 'ريال',
+    emoji: '🔑',
+    img: null,
+    desc: 'مفتاحية جلدية يمكن تخصيصها بأي اسم أو رسالة. هدية مميزة وعملية في نفس الوقت. الجلد الطبيعي يكتسب جمالاً مع الوقت.',
+    colors: [
+      { name: 'بني طبيعي', hex: '#8b6340' },
+      { name: 'أسود', hex: '#1a1a1a' },
+      { name: 'كاراميل', hex: '#c68642' },
+    ]
+  },
+  {
+    id: 7,
+    name: 'محفظة نسائية صغيرة',
+    nameEn: 'Mini Women Wallet',
+    cat: 'محافظ',
+    price: 7500,
+    currency: 'ريال',
+    emoji: '💳',
+    img: null,
+    desc: 'محفظة نسائية أنيقة وصغيرة الحجم مناسبة للبطاقات والمال النقدي. خياطة يدوية بالخيط الذهبي على الجلد الطبيعي.',
+    colors: [
+      { name: 'وردي داكن', hex: '#c2719a' },
+      { name: 'بيج', hex: '#d4b896' },
+      { name: 'بني', hex: '#5c3d2e' },
+    ]
+  },
+  {
+    id: 8,
+    name: 'حقيبة الأعمال الجلدية',
+    nameEn: 'Leather Business Bag',
+    cat: 'حقائب',
+    price: 65000,
+    currency: 'ريال',
+    emoji: '💼',
+    img: null,
+    desc: 'حقيبة أعمال فاخرة مصنوعة من أجود الجلود الطبيعية. تتسع للابتوب حتى 15 بوصة ومستلزمات العمل. تصميم بسيط وأنيق يلائم بيئة العمل.',
+    colors: [
+      { name: 'بني داكن', hex: '#3d2b1f' },
+      { name: 'أسود كلاسيك', hex: '#1a1a1a' },
+    ]
+  },
+];
+
+// ══ الفئات ══
+const cats = ['الكل', ...new Set(products.map(p => p.cat))];
+let selCat = 'الكل';
+let activeProduct = null;
+let selColor = null;
+
+// ══ render filters ══
+function renderFilters() {
+  document.getElementById('filters').innerHTML = cats.map(c =>
+    `<button class="filter-btn ${c === selCat ? 'active' : ''}" onclick="setCat('${c}',this)">${c}</button>`
+  ).join('');
+}
+
+function setCat(cat, el) {
+  selCat = cat;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  el.classList.add('active');
+  renderProducts();
+}
+
+// ══ render products ══
+function renderProducts() {
+  const fl = products.filter(p => selCat === 'الكل' || p.cat === selCat);
+  document.getElementById('prodsGrid').innerHTML = fl.map((p, i) => `
+    <div class="prod-card" style="animation-delay:${i * 0.06}s" onclick="openModal(${p.id})">
+      <div class="prod-img-wrap">
+        ${p.img
+          ? `<img src="${p.img}" alt="${p.name}" loading="lazy"/>`
+          : `<div class="prod-emoji-ph">${p.emoji}</div>`}
+      </div>
+      <div class="prod-overlay">
+        <button class="prod-overlay-btn" onclick="event.stopPropagation();openModal(${p.id})">
+          📲 اطلب الآن
+        </button>
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">${p.cat}</div>
+        <div class="prod-name">${p.name}</div>
+        <div class="prod-desc-short">${p.desc.slice(0, 55)}...</div>
+        <div class="prod-footer">
+          <div class="prod-price">${Number(p.price).toLocaleString('ar')} <span>${p.currency}</span></div>
+          <div class="prod-colors">
+            ${p.colors.map(c => `<div class="color-dot" style="background:${c.hex}" title="${c.name}"></div>`).join('')}
+          </div>
+        </div>
+        <button class="prod-mobile-btn" onclick="event.stopPropagation();openModal(${p.id})">📲 اطلب الآن</button>
+      </div>
+    </div>`).join('');
+}
+
+// ══ modal ══
+function openModal(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  activeProduct = p;
+  selColor = p.colors[0];
+
+  document.getElementById('mImg').innerHTML = p.img
+    ? `<img src="${p.img}" alt="${p.name}"/>`
+    : `<span>${p.emoji}</span>`;
+  document.getElementById('mCat').textContent = p.cat;
+  document.getElementById('mName').textContent = p.name;
+  document.getElementById('mPrice').textContent = Number(p.price).toLocaleString('ar') + ' ' + p.currency;
+  document.getElementById('mDesc').textContent = p.desc;
+  document.getElementById('mColors').innerHTML = p.colors.map((c, i) => `
+    <div class="mcolor-opt ${i === 0 ? 'sel' : ''}" onclick="pickColor(${i}, this, '${p.id}')">
+      <div class="mcolor-dot" style="background:${c.hex}"></div>
+      ${c.name}
+    </div>`).join('');
+
+  document.getElementById('modal').classList.add('open');
+}
+
+function pickColor(idx, el, pid) {
+  const p = products.find(x => x.id == pid);
+  if (!p) return;
+  selColor = p.colors[idx];
+  document.querySelectorAll('.mcolor-opt').forEach(o => o.classList.remove('sel'));
+  el.classList.add('sel');
+}
+
+function closeModal(e) {
+  if (e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+  }
+}
+
+// ══ order via whatsapp ══
+function orderNow() {
+  if (!activeProduct) return;
+  const color = selColor ? selColor.name : activeProduct.colors[0].name;
+  const msg =
+    `🛍️ *طلب جديد — HESHAM Leather*\n\n` +
+    `📦 المنتج: ${activeProduct.name}\n` +
+    `🎨 اللون: ${color}\n` +
+    `💰 السعر: ${Number(activeProduct.price).toLocaleString('ar')} ${activeProduct.currency}\n\n` +
+    `أريد الاستفسار عن هذا المنتج وطريقة الشراء.`;
+  openWa(msg);
+}
+
+function openWa(msg) {
+  window.open(`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2600);
+}
+
+// ══ init ══
+renderFilters();
+renderProducts();
+</script>
+</body>
+</html>
