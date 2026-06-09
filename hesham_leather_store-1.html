@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HESHAM Leather | متجر المصنوعات الجلدية اليدوية الفاخرة</title>
+    <!-- Tailwind CSS (Play CDN for standalone view) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Cairo & Playfair Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'system-ui', 'sans-serif'],
+                        serif: ['Playfair Display', 'Georgia', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c5a059;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a4813d;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #f3e5ab 0%, #d4af37 50%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        body {
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+    </style>
+</head>
+<body class="bg-[#faf9f5] text-[#242320] dark:bg-[#0b0c10] dark:text-[#eae9e6] font-sans selection:bg-[#c5a059] selection:text-black">
+
+    <!-- 1. TOAST SYSTEM -->
+    <div id="toast-container" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none space-y-2"></div>
+
+    <!-- 2. ANNOUNCEMENT BAR -->
+    <div class="bg-[#111111] text-stone-400 py-2.5 px-4 text-[11px] sm:text-xs text-center border-b border-stone-800 flex flex-wrap gap-x-6 gap-y-1.5 justify-center items-center relative z-40">
+        <span class="flex items-center gap-1.5 text-[#c5a059] font-medium">
+            <i data-lucide="truck" class="w-3.5 h-3.5"></i> توصيل سريع ومحترم لكافة المحافظات اليمنية وخارجها
+        </span>
+        <span class="hidden md:inline text-stone-600">|</span>
+        <span class="flex items-center gap-1.5 font-mono text-[11px]">
+            <i data-lucide="globe" class="w-3.5 h-3.5"></i> سعر الصرف المعتمد بالمتجر: 1565 ريال/دولار | 413 ريال/سعودي
+        </span>
+    </div>
+
+    <!-- 3. NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 backdrop-blur-md border-b border-stone-200/50 bg-[#faf9f5]/90 dark:border-stone-900/60 dark:bg-[#0b0c10]/95 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 md:h-24 flex items-center justify-between">
+            
+            <!-- Right Controllers (Theme & Currency Switcher) -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <!-- Theme Toggle Button -->
+                <button onclick="toggleDarkMode()" class="p-2.5 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-600 dark:text-stone-300 bg-stone-100/40 dark:bg-stone-950/40 hover:bg-stone-100 dark:hover:bg-stone-900 transition-colors" title="تبديل المظهر">
+                    <span id="theme-icon-light" class="hidden dark:block text-amber-400"><i data-lucide="sun" class="w-4 h-4"></i></span>
+                    <span id="theme-icon-dark" class="block dark:hidden text-stone-800"><i data-lucide="moon" class="w-4 h-4"></i></span>
+                </button>
+
+                <!-- Currency Picker -->
+                <div class="flex items-center bg-stone-100 dark:bg-stone-950 rounded-lg p-0.5 border border-stone-200 dark:border-stone-800">
+                    <button onclick="changeCurrency('YER')" id="currency-btn-YER" class="px-2.5 py-1 text-[11px] font-bold rounded-md transition-all YER-active bg-[#c5a059] text-stone-950">﷼.ي</button>
+                    <button onclick="changeCurrency('USD')" id="currency-btn-USD" class="px-2.5 py-1 text-[11px] font-bold rounded-md transition-all text-stone-400">USD</button>
+                    <button onclick="changeCurrency('SAR')" id="currency-btn-SAR" class="px-2.5 py-1 text-[11px] font-bold rounded-md transition-all text-stone-400">﷼.س</button>
+                </div>
+            </div>
+
+            <!-- Central sublime brand -->
+            <div class="text-center">
+                <a href="#" class="inline-block">
+                    <h1 class="text-2xl md:text-3xl font-serif tracking-[0.25em] text-stone-950 dark:text-white font-black leading-tight">HESHAM</h1>
+                    <div class="flex items-center justify-center gap-2 mt-0.5">
+                        <span class="w-3.5 h-[1px] bg-[#c5a059]"></span>
+                        <p class="text-[9px] tracking-[0.35em] font-serif uppercase text-[#c5a059] font-semibold">CRAFTED LEATHER</p>
+                        <span class="w-3.5 h-[1px] bg-[#c5a059]"></span>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Left Controls: Atelier access & Luxury Basket drawer Trigger -->
+            <div class="flex items-center gap-3 sm:gap-4">
+                <a href="#bespoke-studio" class="hidden lg:flex items-center gap-1.5 text-xs font-semibold text-[#c5a059] border border-[#c5a059]/20 rounded-full px-4 py-2 bg-[#c5a059]/5 hover:bg-[#c5a059]/10 transition-colors">
+                    <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                    <span>طلب خاص</span>
+                </a>
+
+                <button onclick="toggleCartDrawer(true)" class="relative p-2.5 sm:p-3 rounded-xl border border-stone-200 dark:border-stone-800 text-stone-800 dark:text-stone-200 bg-stone-100/40 dark:bg-stone-950/40 hover:bg-stone-100 dark:hover:bg-stone-900 transition-all flex items-center gap-2 group">
+                    <i data-lucide="shopping-bag" class="w-5 h-5 group-hover:scale-105 duration-200"></i>
+                    <span id="cart-badge" class="absolute -top-2 -right-2 w-5 h-5 bg-amber-500 text-stone-950 text-[10px] font-black rounded-full flex items-center justify-center border border-white dark:border-[#0b0c10] hidden">0</span>
+                    <span class="text-xs font-bold hidden sm:inline-block">السلة</span>
+                </button>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- 4. HERO SECTION -->
+    <section class="relative overflow-hidden py-16 md:py-24 border-b border-stone-200/40 dark:border-stone-900/60">
+        <div class="absolute top-0 left-0 w-80 h-80 bg-amber-600/5 rounded-full filter blur-[100px] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-0 w-96 h-96 bg-amber-700/5 rounded-full filter blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <div class="lg:col-span-7 space-y-6 text-right order-2 lg:order-1">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-[#c5a059] text-xs font-bold tracking-wider mb-2">
+                        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i> مصنوعات جلدية ممتازة بنظرة ملكية
+                    </div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5.5xl font-black font-serif text-stone-950 dark:text-white leading-[1.15] tracking-tight">
+                        حبكة الجِلد العتيق يدوياً <br><span class="gold-gradient-text">تحمِل هيبتك الفائقة</span>
+                    </h2>
+                    <p class="text-sm sm:text-base md:text-lg text-stone-600 dark:text-stone-300 leading-relaxed font-light">
+                        مزيج فخم من دباغة الحبوب الإيطالية الكاملة وعريقة الصنع المجهزة في مشغولاتنا يدويًا لزبائن متجر <span class="font-bold text-stone-900 dark:text-white">HESHAM</span>. نفصل ونحفر القطع بدقة لتلاؤم ذوقك الدبلوماسي وتزداد أناقة بمرور الزمن.
+                    </p>
+
+                    <!-- Fast Perks Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
+                        <div class="flex items-center gap-2 bg-stone-100/50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-800">
+                            <i data-lucide="shield-check" class="w-5 h-5 text-[#c5a059] shrink-0"></i>
+                            <span class="text-xs font-bold font-sans">جلد إيطالي طبيعي 100%</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-stone-100/50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-800">
+                            <i data-lucide="award" class="w-5 h-5 text-[#c5a059] shrink-0"></i>
+                            <span class="text-xs font-bold font-sans">حفر الاسم بالليزر مجاناً</span>
+                        </div>
+                        <div class="flex items-center gap-2 bg-stone-100/50 dark:bg-stone-900/40 p-3 rounded-xl border border-stone-200/50 dark:border-stone-800">
+                            <i data-lucide="message-square" class="w-5 h-5 text-[#c5a059] shrink-0"></i>
+                            <span class="text-xs font-bold font-sans">تأكيد فوري عبر واتساب</span>
+                        </div>
+                    </div>
+
+                    <div class="flex flex-wrap gap-4 pt-4">
+                        <a href="#store-products" class="px-8 py-3.5 bg-stone-950 dark:bg-stone-100 text-[#faf9f5] dark:text-[#0b0c10] text-xs sm:text-sm font-bold rounded-xl hover:bg-stone-800 dark:hover:bg-stone-200 transition-all flex items-center gap-2">
+                            <span>استعرض المعرض الملكي</span>
+                            <i data-lucide="arrow-left" class="w-4 h-4 text-[#c5a059]"></i>
+                        </a>
+                        <a href="#bespoke-studio" class="px-8 py-3.5 border-2 border-stone-300 dark:border-stone-800 hover:border-stone-400 text-stone-800 dark:text-stone-200 text-xs sm:text-sm font-bold rounded-xl hover:bg-stone-50 dark:hover:bg-stone-900 transition-all">
+                            طلب تصميم مخصص
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 order-1 lg:order-2 flex justify-center">
+                    <div class="relative w-full max-w-[340px] sm:max-w-[400px]">
+                        <div class="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-[#c5a059]/30 aspect-[4/5] bg-stone-950">
+                            <img src="https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800" alt="HESHAM Leather" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl backdrop-blur-md bg-stone-950/70 border border-stone-800/80 text-right text-white">
+                                <p class="text-[9px] tracking-wider text-[#c5a059] font-mono">EXECUTIVE SELECTION</p>
+                                <h4 class="text-sm font-bold mt-0.5">حقيبة اللابتوب والوثائق الفاخرة</h4>
+                                <p class="text-xs text-stone-400 mt-1">تؤلف من قطعة جلدية كاملة خالية من العوار والوصلات لسمات ملكية واثقة.</p>
+                            </div>
+                        </div>
+                        <div class="absolute -top-4 -left-4 w-full h-full rounded-2xl border border-stone-200 dark:border-stone-900 -z-10 bg-stone-100/30 dark:bg-stone-950/50"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. PRODUCTS GALLERY -->
+    <section id="store-products" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center space-y-4 mb-14">
+            <span class="text-xs font-serif uppercase tracking-[0.3em] text-[#c5a059] font-bold">THE ATELIER COLLECTION</span>
+            <h3 class="text-2xl sm:text-3.5xl font-serif text-stone-950 dark:text-white font-extrabold tracking-tight">مشغولاتنا المعروضة للحياكة والتنصيب</h3>
+            <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 max-w-xl mx-auto">اضغط على أي مشغل فاق الأهمية لتخصيص لون الجلد وحفر الحروف، ثم قم بضمه إلى سلة التسوق الفاخرة أو بادر بشراءه مباشرة وبدء صناعته في الحال.</p>
+            
+            <!-- Category Filter Rows -->
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-4">
+                <button onclick="filterCategory('all')" id="cat-all" class="px-5 py-2 rounded-full text-xs font-bold transition-all bg-stone-950 text-[#faf9f5] dark:bg-stone-100 dark:text-stone-950 filter-active-btn">كافة التصاميم</button>
+                <button onclick="filterCategory('wallets')" id="cat-wallets" class="px-5 py-2 rounded-full text-xs font-bold transition-all bg-stone-100 dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:bg-stone-200">المحافظ الفاخرة</button>
+                <button onclick="filterCategory('bags')" id="cat-bags" class="px-5 py-2 rounded-full text-xs font-bold transition-all bg-stone-100 dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:bg-stone-200">حقائب السفر والرجال</button>
+                <button onclick="filterCategory('accessories')" id="cat-accessories" class="px-5 py-2 rounded-full text-xs font-bold transition-all bg-stone-100 dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:bg-stone-200">إكسسوارات النخبة</button>
+            </div>
+        </div>
+
+        <!-- Products Grid Container -->
+        <div id="catalog-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+            <!-- Dynamic Injection will occur here -->
+        </div>
+    </section>
+
+    <!-- 6. THE BESPOKE STUDIO (طلب مخصص) -->
+    <section id="bespoke-studio" class="py-16 bg-stone-100/50 dark:bg-stone-950/70 border-t border-b border-stone-200/50 dark:border-stone-900/60">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 text-right">
+            
+            <div class="text-center space-y-3 mb-10">
+                <span class="text-xs uppercase tracking-[0.25em] text-[#c5a059] font-black">BESPOKE ORDER DESK</span>
+                <h3 class="text-2xl sm:text-3.5xl font-serif text-stone-950 dark:text-white font-extrabold">استمارة تفصيل قطعتك الخاصة باليد</h3>
+                <p class="text-xs sm:text-sm text-stone-500 dark:text-stone-400 max-w-lg mx-auto">إن لم تجد القطعة التي تروي شغفك في معرضنا، يستطيع صُنّاع الجلد المحترفون لدينا تنفيذ أي تصميم شخصي بالهندسة والأبعاد والظلال التي تحددها بنفسك.</p>
+            </div>
+
+            <form onsubmit="handleCustomOrder(event)" class="bg-white dark:bg-[#12131a] border border-stone-200 dark:border-stone-900 rounded-2xl p-6 sm:p-8 shadow-xl space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-2">اسمك الكريم (أو كنيتك):</label>
+                        <input type="text" id="cust-name" required placeholder="مثال: هشام اليماني" class="w-full px-4 py-3 text-sm bg-stone-50 dark:bg-stone-950 border border-stone-300 dark:border-stone-800 rounded-xl outline-none focus:ring-2 focus:ring-[#c5a059]/40 text-stone-900 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-2">نوع القطعة المراد تفصيلها:</label>
+                        <select id="cust-type" class="w-full px-4 py-3 text-sm bg-stone-50 dark:bg-stone-950 border border-stone-300 dark:border-stone-800 rounded-xl outline-none focus:ring-2 focus:ring-[#c5a059]/40 text-stone-900 dark:text-neutral-100">
+                            <option value="محفظة بطلب خاص">محفظة كلاسيكية نادرة</option>
+                            <option value="حقيبة ظهر/لابتوب فاخرة">حقيبة لابتوب/أعمال دبلوماسية</option>
+                            <option value="حزام خصر فريد">حزام خصر مصقول ومطعم</option>
+                            <option value="حافظة ساعات">علبة ساعات يد ملكية</option>
+                            <option value="غلاف مفكرة فاخر">غلاف دفتر ومفكرة مانيفيستو</option>
+                            <option value="مشغل إضافي مميز">قطعة إلكترونية أو إكسسوار آخر</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-2">لون ونوعية الجلد المطلوبة:</label>
+                        <input type="text" id="cust-color" placeholder="مثال: هافان / بني عسلي / مطفأ" class="w-full px-4 py-3 text-sm bg-stone-50 dark:bg-stone-950 border border-stone-300 dark:border-stone-800 rounded-xl outline-none focus:ring-2 focus:ring-[#c5a059]/40 text-stone-900 dark:text-white">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-2">الاسم المراد نقشه بالليزر:</label>
+                        <input type="text" id="cust-laser" placeholder="مثال: HESHAM 1990" class="w-full px-4 py-3 text-sm bg-stone-50 dark:bg-stone-950 border border-stone-300 dark:border-stone-800 rounded-xl outline-none focus:ring-2 focus:ring-[#c5a059]/40 text-stone-900 dark:text-white">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-2">أولوية الصياغة والاستباقية:</label>
+                    <div class="flex gap-4">
+                        <label class="flex items-center gap-2 text-xs font-medium cursor-pointer">
+                            <input type="radio" name="urgency" value="normal" checked class="text-[#c5a059] focus:ring-0"> عادي (حياكة متأنية محترمة)
+                        </label>
+                        <label class="flex items-center gap-2 text-xs font-medium cursor-pointer">
+                            <input type="radio" name="urgency" value="express" class="text-[#c5a059] focus:ring-0"> مستعجل (أولوية قصوى بمزيد من الاهتمام الفوري)
+                        </label>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold text-stone-700 dark:text-stone-300 mb-2">تفاصيل التصميم، الأبعاد، وأي ملاحظات إضافية:</label>
+                    <textarea id="cust-details" rows="4" required placeholder="اكتب هنا كافة تفاصيل القطعة الجلدية، والجيوب الإضافية، ومقر التسليم ومحافظتك..." class="w-full px-4 py-3 text-sm bg-stone-50 dark:bg-stone-950 border border-stone-300 dark:border-stone-800 rounded-xl outline-none focus:ring-2 focus:ring-[#c5a059]/40 text-stone-900 dark:text-white"></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-[#c5a059] hover:bg-[#b08c47] text-stone-950 text-sm font-black rounded-xl transition-all shadow-lg flex items-center justify-center gap-2">
+                    <i data-lucide="message-circle" class="w-5 h-5"></i>
+                    <span>إرسال الطلب المخصص لواتساب المتجر والبدء فوراً</span>
+                </button>
+            </form>
+
+        </div>
+    </section>
+
+    <!-- 7. BRAND FOOTER -->
+    <footer class="bg-[#090a0d] text-stone-400 py-16 border-t border-stone-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
+            
+            <div class="space-y-3">
+                <h2 class="text-3xl font-serif tracking-[0.25em] text-white">HESHAM</h2>
+                <p class="text-[10px] tracking-[0.3em] text-[#c5a059] font-semibold uppercase">CRAFTED LEATHER ATELIER</p>
+                <div class="w-12 h-[1px] bg-[#c5a059] mx-auto mt-4"></div>
+            </div>
+
+            <p class="text-xs sm:text-sm max-w-md mx-auto leading-relaxed text-stone-500">
+                مشغولات يدوية مصقولة بجودة منيعة من أرقى جلود الأبقار والماعز الفائقة، صممت لتبوح بأسرار الوقار والمهابة اليمنية الخالصة.
+            </p>
+
+            <div class="flex items-center justify-center gap-6 text-xs font-semibold">
+                <a href="#store-products" class="hover:text-white transition-colors">معرض المنتجات</a>
+                <span>•</span>
+                <a href="#bespoke-studio" class="hover:text-white transition-colors">سجل التفصيل</a>
+                <span>•</span>
+                <a href="https://wa.me/967780066128" target="_blank" class="hover:text-white text-green-500 flex items-center gap-1.5 transition-colors">
+                    <i data-lucide="phone" class="w-3.5 h-3.5"></i>
+                    <span>تواصل مباشر: 780066128</span>
+                </a>
+            </div>
+
+            <div class="pt-8 border-t border-stone-900 text-[11px] text-stone-600 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="font-mono">© ٢٠٢٦ متجر HESHAM للمصنوعات الجلدية الفاخرة. جميع الحقوق محفوظة.</p>
+                <p class="flex items-center gap-1.5">
+                    <span>مصمم بمهابة وإتقان</span> 
+                    <i data-lucide="heart" class="w-3 h-3 text-[#c5a059] fill-[#c5a059]"></i>
+                </p>
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- 8. SHOPPING CART DRAWER (SLIDE-OVER) -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+        <div class="absolute inset-0 overflow-hidden">
+            <!-- Background opacity overlay -->
+            <div onclick="toggleCartDrawer(false)" class="absolute inset-0 bg-stone-950/80 backdrop-blur-xs transition-opacity" aria-hidden="true"></div>
+
+            <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full pr-10">
+                <div class="pointer-events-auto w-screen max-w-md">
+                    <div class="flex h-full flex-col bg-white dark:bg-[#12131a] border-r border-[#c5a059]/20 shadow-2xl">
+                        
+                        <!-- Header -->
+                        <div class="px-5 py-6 bg-stone-50 dark:bg-stone-950 border-b border-stone-200 dark:border-stone-900 flex items-center justify-between">
+                            <button onclick="toggleCartDrawer(false)" class="p-2 rounded-lg bg-stone-200/50 hover:bg-stone-200 dark:bg-stone-900 dark:hover:bg-stone-800 text-stone-700 dark:text-stone-300">
+                                <i data-lucide="x" class="w-4 h-4"></i>
+                            </button>
+                            <h3 class="text-base sm:text-lg font-bold text-stone-950 dark:text-white flex items-center gap-2">
+                                <i data-lucide="shopping-bag" class="w-5 h-5 text-[#c5a059]"></i>
+                                <span>سلتك الجلدية الفاخرة</span>
+                            </h3>
+                        </div>
+
+                        <!-- Scrollable Cart Content -->
+                        <div class="flex-1 overflow-y-auto px-5 py-6 space-y-4" id="cart-items-list-container">
+                            <!-- Injected dynamically when empty or with items -->
+                        </div>
+
+                        <!-- Footer summary -->
+                        <div class="px-5 py-6 bg-stone-50 dark:bg-stone-950 border-t border-stone-200 dark:border-stone-900 space-y-4 text-right">
+                            <div class="flex items-center justify-between">
+                                <span class="text-sm font-bold text-[#c5a059]" id="cart-drawer-total">0 ريال.ي</span>
+                                <span class="text-xs text-stone-500 dark:text-stone-400 font-bold">إجمالي قيمة المجموعة:</span>
+                            </div>
+                            <p class="text-[10px] text-stone-400 dark:text-stone-500">
+                                * التوصيل مجاني ومؤمن في نطاق المحافظات الرئيسية عند تجاوز طلبك قيمة معينة للتفصيل بالكامل.
+                            </p>
+                            <button onclick="checkoutCart()" class="w-full py-4 bg-[#c5a059] hover:bg-[#b08c47] text-stone-950 text-sm font-black rounded-xl transition-all shadow-md flex items-center justify-center gap-2">
+                                <i data-lucide="message-circle" class="w-5 h-5"></i>
+                                <span>تأكيد الطلب الفخم وإرسال للسلة واتساب</span>
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 9. DETAIL & CUSTOMIZATION OVERLAY MODAL -->
+    <div id="product-modal" class="fixed inset-0 z-50 overflow-y-auto hidden flex items-center justify-center p-4">
+        <!-- Backdrop overlay -->
+        <div onclick="closeProductModal()" class="fixed inset-0 bg-stone-950/90 backdrop-blur-md"></div>
+
+        <!-- Content Frame container -->
+        <div class="relative w-full max-w-4xl rounded-2xl bg-white dark:bg-[#12131a] border border-stone-200 dark:border-stone-900 shadow-2xl overflow-hidden z-10 grid grid-cols-1 md:grid-cols-12 max-h-[90vh] md:max-h-none overflow-y-auto text-right">
+            
+            <!-- Close trigger -->
+            <button onclick="closeProductModal()" class="absolute top-4 left-4 z-30 p-2 rounded-full bg-stone-900/60 text-white border border-stone-700 hover:bg-stone-800 transition-colors">
+                <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+
+            <!-- RHS Media columns [5 spans] -->
+            <div class="md:col-span-5 bg-stone-50 dark:bg-stone-950 p-6 flex flex-col justify-between border-l border-stone-200 dark:border-stone-900 gap-6">
+                <div class="space-y-4">
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden shadow border dark:border-stone-900 bg-stone-900">
+                        <img id="modal-display-img" src="" alt="صورة المعاينة" class="w-full h-full object-cover">
+                    </div>
+                </div>
+
+                <div class="space-y-3.5 text-xs text-stone-600 dark:text-stone-300">
+                    <div class="flex items-start gap-1.5">
+                        <i data-lucide="briefcase" class="w-4 h-4 text-[#c5a059] shrink-0 mt-0.5"></i>
+                        <div><strong class="text-stone-900 dark:text-white block">خامة الجلد:</strong> <span id="modal-leather"></span></div>
+                    </div>
+                    <div class="flex items-start gap-1.5">
+                        <i data-lucide="layers" class="w-4 h-4 text-[#c5a059] shrink-0 mt-0.5"></i>
+                        <div><strong class="text-stone-900 dark:text-white block">الأبعاد القياسية للحقيبة/المحفظة:</strong> <span id="modal-dimensions"></span></div>
+                    </div>
+                    <div class="flex items-start gap-1.5">
+                        <i data-lucide="clock" class="w-4 h-4 text-[#c5a059] shrink-0 mt-0.5"></i>
+                        <div><strong class="text-stone-900 dark:text-white block">أيام تحضير الصقل باليد:</strong> <span id="modal-time" class="text-[#c5a059]"></span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- LHS Customizer column [7 spans] -->
+            <div class="md:col-span-7 p-6 sm:p-8 space-y-5 flex flex-col justify-between">
+                <div class="space-y-4">
+                    <span class="text-[10px] font-bold text-[#c5a059] tracking-widest uppercase">Atelier Catalog Selection</span>
+                    <h3 id="modal-title" class="text-2xl font-extrabold text-stone-900 dark:text-white leading-tight"></h3>
+                    <p id="modal-subtitle" class="text-xs font-serif italic text-stone-400"></p>
+                    
+                    <div class="p-3 bg-stone-100 dark:bg-stone-950 border border-stone-200 dark:border-stone-900 rounded-xl flex items-center justify-between">
+                        <span class="text-xs text-stone-500 font-bold">سعر التفصيل اليدوي للقطعة:</span>
+                        <span id="modal-price" class="text-xl font-extrabold text-[#c5a059]"></span>
+                    </div>
+
+                    <p id="modal-desc" class="text-xs sm:text-sm text-stone-600 dark:text-stone-400 leading-relaxed font-light"></p>
+                
+                    <hr class="border-stone-200 dark:border-stone-900">
+
+                    <!-- Interactive Config Fields -->
+                    <div class="space-y-4 text-right">
+                        <div>
+                            <span class="text-xs font-bold text-stone-800 dark:text-stone-200 block mb-2">اختر تدرج لون الجلد المعتمد:</span>
+                            <div id="modal-color-buttons" class="flex flex-wrap gap-2">
+                                <!-- Colors injected dynamically -->
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between items-center mb-1.5">
+                                <span class="text-xs font-bold text-stone-800 dark:text-stone-200">الاسم أو الصورة المراد حفرها بالليزر (مجاناً):</span>
+                                <span class="text-[9px] text-[#c5a059] font-bold bg-[#c5a059]/10 px-2 py-0.5 rounded">نقش شخصي</span>
+                            </div>
+                            <input type="text" id="modal-engraving-input" placeholder="مثال: HESHAM 1990" class="w-full px-3.5 py-2.5 text-xs sm:text-sm bg-stone-100 dark:bg-stone-950 border border-stone-300 dark:border-stone-800 rounded-xl outline-none focus:ring-2 focus:ring-[#c5a059]/40 text-stone-900 dark:text-white">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add to cart of Buy instantly row -->
+                <div class="pt-5 border-t border-stone-200 dark:border-stone-900 grid grid-cols-2 gap-3">
+                    <button onclick="addModalItemToCart()" class="py-3 bg-[#c5a059] hover:bg-[#b08c47] text-stone-950 text-xs sm:text-sm font-black rounded-xl transition-all shadow flex items-center justify-center gap-1.5">
+                        <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                        <span>إضافة للسلة</span>
+                    </button>
+                    <button id="modal-buy-wa-btn" class="py-3 bg-green-500 hover:bg-green-600 text-white text-xs sm:text-sm font-black rounded-xl transition-all shadow flex items-center justify-center gap-1.5">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i>
+                        <span>محادثة الخياط كود واتساب</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- 10. JAVASCRIPT LOGIC ENGINE -->
+    <script>
+        // Core Products Data Store
+        const products = [
+            {
+                id: 'hsh-01',
+                name: 'محفظة هِشام الكِلاسيكية',
+                nameEn: 'HESHAM Regal Wallet',
+                priceYer: 47000,
+                description: 'محفظة جيب كلاسيكية مصنوعة كلياً من الجلد البقري الإيطالي الكامل المدبوغ طبيعياً بملمس معتق ورونق ملكي دائم.',
+                detailedDescription: 'تأتي محفظة هِشام الكلاسيكية لتجسد المعنى الحقيقي للفخامة والعملية. تم دباغة الجلد بالمواد النباتية الطبيعية الخالية من الكيماويات لتكتسب المحفظة طابعاً معتقاً يزداد هيبة وجاذبية مع مرور الزمن. مخيطة يدوياً بخيوط شمعية فائقة المتانة لضمان جودة تدوم لأجيال.',
+                images: ['https://images.unsplash.com/photo-1627124768124-04ef5850021b?auto=format&fit=crop&q=80&w=800'],
+                category: 'wallets',
+                leatherType: 'جلد بقري إيطالي كامل الحبوب (Full-Grain) دباغة نباتية فاخرة',
+                dimensions: '11.5 سم × 9.5 سم × 1.5 سم',
+                craftingTime: 'إعداد يدوي متقن (٢ - ٣ أيام عَمَل)',
+                colors: [
+                    { nameAr: 'عسلي دافئ', hex: '#b87333' },
+                    { nameAr: 'أسود ملكي', hex: '#111111' },
+                    { nameAr: 'بني عسلي غامق', hex: '#5c4033' }
+                ]
+            },
+            {
+                id: 'hsh-02',
+                name: 'حقيبة اللابتوب والوثائق الملكية',
+                nameEn: 'Royal Executive Briefcase',
+                priceYer: 235000,
+                description: 'حقيبة أعمال دبلوماسية راقية، مخصصة لرجال الحكمة والريادة، تجمع الهيبة العصرية مع دقة الخياطة اليدوية الفذّة.',
+                detailedDescription: 'تمتع بمهابة لا تضاهى في اجتماعاتك. صُممت هذه الحقيبة لتتسع حاسوبًا بمقاس يصل إلى 16 بوصة، بالإضافة إلى جيب منظم للوثائق والأقلام ونظارتك الخاصة. مجهزة بقفل نحاسي مشفر مطلي بماء الذهب العتيق المقاوم للصدأ والتآكل.',
+                images: ['https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&q=80&w=800'],
+                category: 'bags',
+                leatherType: 'جلد البقر البريميوم السميك المعالج بشمع النحل الطبيعي لجمال معتق',
+                dimensions: '39 سم × 30 سم × 8.5 سم',
+                craftingTime: 'إعداد يدوي متقن (5 - 7 أيام عمل)',
+                colors: [
+                    { nameAr: 'كوجناك مهيب', hex: '#8c5230' },
+                    { nameAr: 'أسود فاحم', hex: '#1a1a1a' }
+                ]
+            },
+            {
+                id: 'hsh-03',
+                name: 'حزام هِشام الدبلوماسي النخبة',
+                nameEn: 'Elite Bridle Leather Belt',
+                priceYer: 39000,
+                description: 'حزام جلدي ذو هيبة واضحة، مصنوع من طبقة واحدة سميكة ومصقولة يدوياً لمتانة أسطورية وإطلالة تفرض الاحترام.',
+                detailedDescription: 'التفاصيل الصغيرة هي ما تصنع الفارق العظيم. يتميز حزام النخبة بإبزيم نحاسي مصقول يدوياً باللون الفضي العتيق أو الذهبي الهادئ، مع حواف ملساء وحافة بنقش غائر خفي مميز. صلب بما يكفي ليدوم عمراً، ومرن بما يكفي ليوفر الراحة الكلية.',
+                images: ['https://images.unsplash.com/photo-1624222247344-550fb8b22e11?auto=format&fit=crop&q=80&w=800'],
+                category: 'accessories',
+                leatherType: 'جلد لجام إنجليزي مدفوع الشحوم والزيوت الطبيعية لمقاومة قصوى',
+                dimensions: 'عرض ٣.٨ سم (طول مخصص حسب قياس الخصر)',
+                craftingTime: 'إعداد يدوي متقن (١ - ٢ يوم عمل)',
+                colors: [
+                    { nameAr: 'بني شوكولاتة', hex: '#3d251e' },
+                    { nameAr: 'أسود معتم', hex: '#0a0a0a' },
+                    { nameAr: 'بني عسلي', hex: '#a66a38' }
+                ]
+            },
+            {
+                id: 'hsh-04',
+                name: 'علبة ساعات النُخبة المخملية',
+                nameEn: 'Imperial Watch Keeper',
+                priceYer: 85000,
+                description: 'خزينة جلدية يدوية مخصصة لحفظ ٣ ساعات من الساعات الثمينة، ببطانة مخملية مخيطة يدوياً لمنع الخدوش والدست المترب.',
+                detailedDescription: 'تستحق ساعاتك الفخمة موطناً من الهيبة تليق بمكانتها. تأتي علبة الساعات من HESHAM بشكل أسطواني صلب يوفر الحماية الكاملة مع فواصل قابلة للإزالة وبطانة من قماش الشامواه الناعم الفاخر، لتكون رفيقة مثالية في رحلاتك الفاخرة أو على منضدة غرفتك الخاصة.',
+                images: ['https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=800'],
+                category: 'accessories',
+                leatherType: 'جلد الماعز الإسباني المصقول مع قاعدة خشبية طبيعية صلبة للحماية',
+                dimensions: '٢٢ سم × ١٠ سم × ٧.٥ سم',
+                craftingTime: 'إعداد يدوي متقن (٣ - ٤ أيام عمل)',
+                colors: [
+                    { nameAr: 'كحلي دوقي', hex: '#1d2a44' },
+                    { nameAr: 'أخضر غابات ملكي', hex: '#1c352d' },
+                    { nameAr: 'جملي دافئ', hex: '#c19a6b' }
+                ]
+            }
+        ];
+
+        // System Settings
+        const exchangeRates = {
+            YER: 1,
+            USD: 1 / 1565,
+            SAR: 1 / 413
+        };
+
+        let currentCurrency = 'YER';
+        let cart = [];
+        let activeCategory = 'all';
+        let modalProduct = null;
+        let modalSelectedColor = '';
+
+        // Initialize App
+        window.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            lucide.createIcons();
+        });
+
+        // 1. Toast Notification Trigger
+        function triggerToast(message) {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            toast.className = "px-6 py-4 bg-stone-900 text-stone-100 dark:bg-stone-100 dark:text-stone-900 shadow-2xl rounded-xl border border-[#c5a059]/20 flex items-center gap-2 max-w-sm pointer-events-auto transform transition-all duration-300 translate-y-4 opacity-0";
+            toast.innerHTML = `<i data-lucide="sparkles" class="w-4 h-4 text-[#c5a059] shrink-0"></i><p class="text-xs font-bold">${message}</p>`;
+            
+            container.appendChild(toast);
+            lucide.createIcons();
+            
+            // Animation trigger
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('-translate-y-2', 'opacity-0');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        // 2. Dark Mode Toggle
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+            } else {
+                html.classList.add('dark');
+            }
+        }
+
+        // 3. Currency switcher
+        function changeCurrency(currencyCode) {
+            currentCurrency = currencyCode;
+            
+            // Update currency picker UI buttons classes
+            ['YER', 'USD', 'SAR'].forEach(code => {
+                const btn = document.getElementById(`currency-btn-${code}`);
+                if (code === currencyCode) {
+                    btn.className = "px-2.5 py-1 text-[11px] font-bold rounded-md transition-all bg-[#c5a059] text-stone-950";
+                } else {
+                    btn.className = "px-2.5 py-1 text-[11px] font-bold rounded-md transition-all text-stone-500 hover:text-stone-900 dark:hover:text-stone-100";
+                }
+            });
+
+            renderProducts();
+            updateCartUI();
+            triggerToast(`تم تحويل نظام الأسعار لعملة: ${getCurrencyLabel(currencyCode)}`);
+        }
+
+        function getCurrencyLabel(code) {
+            if (code === 'USD') return 'USD $';
+            if (code === 'SAR') return '﷼.سعودي';
+            return '﷼.يمني';
+        }
+
+        // 4. Format Price
+        function formatPrice(priceYer) {
+            const rate = exchangeRates[currentCurrency];
+            const converted = priceYer * rate;
+            if (currentCurrency === 'YER') {
+                return `${Math.round(converted).toLocaleString('ar-YE')} ﷼.ي`;
+            } else {
+                return `${converted.toFixed(1).toLocaleString()} ${currentCurrency === 'USD' ? '$' : '﷼.س'}`;
+            }
+        }
+
+        // 5. Render Galleries
+        function renderProducts() {
+            const container = document.getElementById('catalog-grid');
+            container.innerHTML = '';
+
+            const filtered = activeCategory === 'all' 
+                ? products 
+                : products.filter(p => p.category === activeCategory);
+
+            filtered.forEach(product => {
+                const colorsHTML = product.colors.map(col => `
+                    <span style="background-color: ${col.hex}" class="w-3 h-3 rounded-full border border-stone-200 shadow-sm" title="${col.nameAr}"></span>
+                `).join('');
+
+                const card = document.createElement('div');
+                card.className = "group relative flex flex-col h-full rounded-2xl bg-white dark:bg-[#12131a] border border-stone-200/60 dark:border-stone-900/80 overflow-hidden shadow-md hover:shadow-xl hover:border-[#c5a059]/40 transition-all duration-300 text-right";
+                card.innerHTML = `
+                    <div onclick="openProductModal('${product.id}')" class="relative aspect-[4/3] bg-stone-100 dark:bg-stone-900 overflow-hidden cursor-pointer">
+                        <img src="${product.images[0]}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-105 duration-500 ease-out brightness-95">
+                        <div class="absolute inset-0 bg-stone-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="px-5 py-2 bg-[#eae9e6] text-stone-950 text-xs font-bold rounded-lg shadow-2xl flex items-center gap-1.5 transform translate-y-2 group-hover:translate-y-0 transition-all">
+                                <i data-lucide="layers" class="w-3.5 h-3.5"></i> تخصيص ونظرة فاحصة
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="p-5 flex-1 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2">
+                            <span class="text-[10px] font-semibold text-[#c5a059] uppercase tracking-wider block">مصنوعات HESHAM الأصيلة</span>
+                            <h4 onclick="openProductModal('${product.id}')" class="text-base font-bold text-stone-950 dark:text-stone-50 hover:text-[#c5a059] transition-colors cursor-pointer leading-tight">${product.name}</h4>
+                            <p class="text-[10px] font-mono text-stone-400 font-bold">${product.nameEn}</p>
+                            <p class="text-xs text-stone-500 dark:text-stone-400 line-clamp-2 leading-relaxed font-light">${product.description}</p>
+                        </div>
+
+                        <div class="space-y-3.5 pt-2 border-t border-stone-100 dark:border-stone-900">
+                            <div class="flex items-center justify-between">
+                                <div class="flex gap-1">${colorsHTML}</div>
+                                <span class="text-sm font-bold text-[#c5a059]">${formatPrice(product.priceYer)}</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-2">
+                                <button onclick="openProductModal('${product.id}')" class="py-2.5 px-3 border border-stone-300 dark:border-stone-800 rounded-lg text-[11px] font-bold text-stone-700 dark:text-stone-300 hover:bg-stone-50 dark:hover:bg-stone-900 transition-colors">صقل مخصص</button>
+                                <button onclick="addToCartInstantly('${product.id}')" class="py-2.5 px-3 bg-[#c5a059] hover:bg-[#b08c47] text-stone-950 rounded-lg text-[11px] font-black transition-colors flex items-center justify-center gap-1">
+                                    <i data-lucide="shopping-cart" class="w-3.5 h-3.5 shrink-0"></i> أضف للسلة
+                                </button>
+                            </div>
+
+                            <button onclick="orderViaWhatsAppDirect('${product.id}')" class="w-full py-2 bg-green-500/10 hover:bg-green-500/15 border border-green-500/20 text-green-600 dark:text-green-400 rounded-lg text-[11px] font-bold transition-all flex items-center justify-center gap-1">
+                                <i data-lucide="message-circle" class="w-3.5 h-3.5 shrink-0 text-green-500"></i> شراء عبر واتساب فوراً
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+            
+            lucide.createIcons();
+        }
+
+        // Filter Category
+        function filterCategory(catId) {
+            activeCategory = catId;
+            ['all', 'wallets', 'bags', 'accessories'].forEach(id => {
+                const btn = document.getElementById(`cat-${id}`);
+                if (!btn) return;
+                if (id === catId) {
+                    btn.className = "px-5 py-2 rounded-full text-xs font-bold transition-all bg-stone-950 text-[#faf9f5] dark:bg-stone-100 dark:text-stone-950 filter-active-btn";
+                } else {
+                    btn.className = "px-5 py-2 rounded-full text-xs font-bold transition-all bg-stone-100 dark:bg-stone-900 text-stone-600 dark:text-stone-400 hover:bg-stone-200";
+                }
+            });
+            renderProducts();
+        }
+
+        // Shopping Cart Engine
+        function toggleCartDrawer(open) {
+            const drawer = document.getElementById('cart-drawer');
+            if (open) {
+                drawer.classList.remove('hidden');
+            } else {
+                drawer.classList.add('hidden');
+            }
+        }
+
+        function addToCart(p, color, engText) {
+            const chosenColor = color || p.colors[0].nameAr;
+            const chosenEng = engText || 'بدون حفر اسم';
+            
+            const matchIndex = cart.findIndex(item => item.product.id === p.id && item.color === chosenColor && item.engraving === chosenEng);
+            if (matchIndex > -1) {
+                cart[matchIndex].quantity += 1;
+            } else {
+                cart.push({ product: p, color: chosenColor, engraving: chosenEng, quantity: 1 });
+            }
+
+            triggerToast(`تمت إضافة "${p.name}" إلى سلتك`);
+            updateCartUI();
+        }
+
+        function addToCartInstantly(prodId) {
+            const p = products.find(x => x.id === prodId);
+            if (p) addToCart(p, null, null);
+        }
+
+        function changeCartQty(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-items-list-container');
+            const badge = document.getElementById('cart-badge');
+            const totalText = document.getElementById('cart-drawer-total');
+
+            // Count total
+            let totalQty = cart.reduce((tot, current) => tot + current.quantity, 0);
+            let totalCost = cart.reduce((tot, current) => tot + (current.product.priceYer * current.quantity), 0);
+
+            badge.innerText = totalQty;
+            if (totalQty > 0) {
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            totalText.innerText = formatPrice(totalCost);
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="h-64 flex flex-col items-center justify-center text-stone-400 text-center gap-3">
+                        <i data-lucide="shopping-bag" class="w-12 h-12 text-stone-300 dark:text-stone-800"></i>
+                        <p class="text-xs font-bold">سلتك الجلدية فارغة حالياً</p>
+                        <p class="text-[10px] text-stone-400">انظر للمعرض لتزيين مقتنياتك</p>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = cart.map((item, idx) => `
+                    <div class="flex items-center gap-3 p-3 rounded-xl bg-stone-50 dark:bg-stone-950/50 border border-stone-200 dark:border-stone-900 text-right">
+                        <img src="${item.product.images[0]}" alt="${item.product.name}" class="w-16 h-12 rounded-lg object-cover">
+                        <div class="flex-1 space-y-1">
+                            <h4 class="text-xs font-bold text-stone-900 dark:text-white leading-tight">${item.product.name}</h4>
+                            <p class="text-[9px] text-[#c5a059] font-medium">اللون: ${item.color} | الحفر: ${item.engraving}</p>
+                            <p class="text-xs font-bold text-stone-500">${formatPrice(item.product.priceYer * item.quantity)}</p>
+                        </div>
+                        <div class="flex flex-col items-center gap-1.5">
+                            <button onclick="changeCartQty(${idx}, 1)" class="w-6 h-6 rounded-full bg-[#c5a059]/10 text-[#c5a059] flex items-center justify-center hover:bg-[#c5a059]/20 font-bold text-xs">+</button>
+                            <span class="text-xs font-bold font-mono">${item.quantity}</span>
+                            <button onclick="changeCartQty(${idx}, -1)" class="w-6 h-6 rounded-full bg-[#c5a059]/10 text-[#c5a059] flex items-center justify-center hover:bg-[#c5a059]/20 font-bold text-xs">-</button>
+                        </div>
+                    </div>
+                `).join('');
+            }
+            lucide.createIcons();
+        }
+
+        // WhatsApp Checkout Cart
+        function checkoutCart() {
+            if (cart.length === 0) {
+                triggerToast('السلة فارغة، برجاء إضافة منتجات أولاً');
+                return;
+            }
+
+            let desc = '';
+            cart.forEach((item, index) => {
+                desc += `📦 [${index + 1}] ${item.product.name}\n  - اللون: ${item.color}\n  - نقش الحروف: ${item.engraving}\n  - الكمية: ${item.quantity}\n  - السعر الكلي: ${formatPrice(item.product.priceYer * item.quantity)}\n\n`;
+            });
+
+            const total = cart.reduce((tot, item) => tot + (item.product.priceYer * item.quantity), 0);
+
+            const msg = `السلام عليكم ورحمة الله وبركاته يا متجر هِشام الفاخر 🌹
+أود شراء سلة المصنوعات الجلدية اليدوية التالية:
+
+${desc}----------------------------
+🎁 الإجمالي الكلي للطلب الفاخر: ${formatPrice(total)}
+💳 العملة المحددة بالموقع: ${currentCurrency}
+
+أرجو المتابعة وإرسال تفاصيل التوصيل والحسابات البنكية. شكراً لكم!`;
+
+            window.open(`https://wa.me/967780066128?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // Product Modal Logic
+        function openProductModal(prodId) {
+            modalProduct = products.find(p => p.id === prodId);
+            if (!modalProduct) return;
+
+            document.getElementById('modal-display-img').src = modalProduct.images[0];
+            document.getElementById('modal-title').innerText = modalProduct.name;
+            document.getElementById('modal-subtitle').innerText = modalProduct.nameEn;
+            document.getElementById('modal-price').innerText = formatPrice(modalProduct.priceYer);
+            document.getElementById('modal-desc').innerText = modalProduct.detailedDescription;
+            document.getElementById('modal-leather').innerText = modalProduct.leatherType;
+            document.getElementById('modal-dimensions').innerText = modalProduct.dimensions;
+            document.getElementById('modal-time').innerText = modalProduct.craftingTime;
+            document.getElementById('modal-engraving-input').value = '';
+
+            // Color buttons render with first auto-selected
+            modalSelectedColor = modalProduct.colors[0].nameAr;
+            const colorContainer = document.getElementById('modal-color-buttons');
+            colorContainer.innerHTML = modalProduct.colors.map(col => `
+                <button onclick="setModalColor('${col.nameAr}')" id="modal-col-${col.nameAr}" class="px-3 py-1.5 rounded-lg border-2 text-xs font-bold flex items-center gap-1.5 transition-all ${col.nameAr === modalSelectedColor ? 'border-[#c5a059] text-[#c5a059]' : 'border-stone-200 dark:border-stone-800 text-stone-500'}">
+                    <span style="background-color: ${col.hex}" class="w-3 h-3 rounded-full border border-stone-400"></span>
+                    <span>${col.nameAr}</span>
+                </button>
+            `).join('');
+
+            // Buy via WhatsApp config click custom action
+            const buyBtn = document.getElementById('modal-buy-wa-btn');
+            buyBtn.onclick = () => {
+                const eng = document.getElementById('modal-engraving-input').value || 'بدون حفر';
+                const msg = `السلام عليكم يا متجر HESHAM 🌹
+أود شراء هذا المنتج المنحوت يدوياً:
+
+💎 المنتج: ${modalProduct.name}
+🎨 لون الجلد: ${modalSelectedColor}
+✍️ نقش الحفر الشخصي: ${eng}
+💰 السعر المحدد: ${formatPrice(modalProduct.priceYer)}
+
+أرجو حجزها وبدء الصقل اليدوية. شكراً للمتجر المحترم.`;
+                window.open(`https://wa.me/967780066128?text=${encodeURIComponent(msg)}`, '_blank');
+            };
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        function setModalColor(colorAr) {
+            modalSelectedColor = colorAr;
+            modalProduct.colors.forEach(col => {
+                const btn = document.getElementById(`modal-col-${col.nameAr}`);
+                if (col.nameAr === colorAr) {
+                    btn.className = "px-3 py-1.5 rounded-lg border-2 text-xs font-bold flex items-center gap-1.5 transition-all border-[#c5a059] text-[#c5a059]";
+                } else {
+                    btn.className = "px-3 py-1.5 rounded-lg border-2 text-xs font-bold flex items-center gap-1.5 transition-all border-stone-200 dark:border-stone-800 text-stone-500";
+                }
+            });
+        }
+
+        function addModalItemToCart() {
+            const engraving = document.getElementById('modal-engraving-input').value || 'بدون حفر اسم';
+            addToCart(modalProduct, modalSelectedColor, engraving);
+            closeProductModal();
+        }
+
+        function orderViaWhatsAppDirect(prodId) {
+            const p = products.find(x => x.id === prodId);
+            if (!p) return;
+            const msg = `السلام عليكم يا متجر هِشام الفاخر لِلمصنوعات الجلدية 🌹
+أود تأكيد طلب شراء الفاخرة:
+
+💎 المنتج: ${p.name} (${p.nameEn})
+💰 سعر القطعة الحالي: ${formatPrice(p.priceYer)}
+⏳ زمن البناء والتصدير: ${p.craftingTime}
+
+أرجو إشعاري بباقي الخطوات للتحويل والتوصيل الموقر.`;
+            window.open(`https://wa.me/967780066128?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // Custom Order submit function
+        function handleCustomOrder(e) {
+            e.preventDefault();
+            const name = document.getElementById('cust-name').value;
+            const type = document.getElementById('cust-type').value;
+            const color = document.getElementById('cust-color').value || 'هافان / كوجناك دافئ';
+            const laser = document.getElementById('cust-laser').value || 'لا يوجد حفر';
+            const details = document.getElementById('cust-details').value;
+            const urgencyVal = document.querySelector('input[name="urgency"]:checked').value;
+            const urgencyLabel = urgencyVal === 'express' ? 'مستعجل (أولوية فائقة وعجلة إنتاج)' : 'عادي (صناعة متقنة متمهلة)';
+
+            const text = `السلام عليكم يا متجر HESHAM الفاخر 🎨✨
+أود تقديم استمارة طلب قطعة جلدية مخصصة لي بالكامل:
+
+👤 صاحب الطلب: ${name}
+🎒 نوع القطعة: ${type}
+🎨 لون الجلد وخامته: ${color}
+✍️ نقش الحروف بالليزر: ${laser}
+⏳ حالة الاستعجال: ${urgencyLabel}
+📝 التفاصيل الكاملة والأبعاد المرغوبة:
+"${details}"
+
+أرجو تقدير السلفه والتكلفة وبدء خياطتها وصقلها. شكراً لتفاهمكم الموقر!`;
+
+            window.open(`https://wa.me/967780066128?text=${encodeURIComponent(text)}`, '_blank');
+            triggerToast('تم تجهيز استمارة التفصيل وتحويلك للواتساب بنجاح!');
+        }
+    </script>
+</body>
+</html>
